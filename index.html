@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DUY TOÀN Profile</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial;
+    }
+
+    body{
+      background:#0d0d0d;
+      color:white;
+      overflow:hidden;
+    }
+
+    canvas{
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:-1;
+    }
+
+    .card{
+      width:350px;
+      background:rgba(0,0,0,0.7);
+      border:1px solid #00ff99;
+      box-shadow:0 0 20px #00ff99;
+      margin:60px auto;
+      padding:25px;
+      border-radius:20px;
+      text-align:center;
+      backdrop-filter:blur(5px);
+    }
+
+    .avatar{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      border:3px solid #00ff99;
+      object-fit:cover;
+      margin-bottom:15px;
+    }
+
+    h1{
+      color:#00ff99;
+      margin-bottom:10px;
+    }
+
+    .bio{
+      color:#ccc;
+      margin-bottom:20px;
+    }
+
+    .box{
+      background:#111;
+      border:1px solid #00ff99;
+      padding:12px;
+      border-radius:12px;
+      margin-top:12px;
+      text-align:left;
+    }
+
+    .box b{
+      color:#00ff99;
+    }
+
+    .service{
+      color:#fff;
+      line-height:1.8;
+    }
+
+    .btn{
+      display:block;
+      width:100%;
+      padding:12px;
+      margin-top:15px;
+      background:#00ff99;
+      color:black;
+      text-decoration:none;
+      border-radius:10px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:white;
+    }
+
+    .footer{
+      margin-top:20px;
+      color:#777;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="card">
+
+  <img class="avatar" src="https://i.imgur.com/8Km9tLL.jpg">
+
+  <h1>DUY TOÀN</h1>
+
+  <p class="bio">
+    Developer • Designer • Services Online
+  </p>
+
+  <div class="box">
+    <b>📘 Facebook:</b><br>
+    https://www.facebook.com/bin.zin.178191991/?http_ref=eyJ0cyI6MTc3ODIxODA5ODAwMCwiciI6IiJ9
+  </div>
+
+  <div class="box">
+    <b>📱 Zalo:</b><br>
+    0787900055
+  </div>
+
+  <div class="box service">
+    <b>⚡ Dịch vụ:</b><br>
+    • Thiết kế web<br>
+    • Chạy Code thuê<br>
+    • Thu mua bán acc<br>
+    • Cấp chứng chỉ vip<br>
+    • Chỉnh sửa ảnh<br>
+    • Làm bio link<br>
+    • Hỗ trợ công nghệ
+  </div>
+
+  <div class="box">
+    <b>🏦 Ngân hàng:</b><br>
+    ZALO PAY<br>
+    STK: 0787900055<br>
+    CTK: TRAN MINH TAM
+  </div>
+
+  <a class="btn" href="https://facebook.com">
+    LIÊN HỆ NGAY
+  </a>
+
+  <div class="footer">
+    © 2026 DUY TOAN
+  </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+  drops[x] = 1;
+
+function draw(){
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle = "#00ff99";
+  ctx.font = fontSize + "px monospace";
+
+  for(let i = 0; i < drops.length; i++){
+    const text = letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+    if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 33);
+</script>
+
+</body>
+</html>
